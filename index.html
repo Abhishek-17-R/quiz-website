@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud Computing Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- User Info Section -->
+    <div id="user-info">
+        <h2>Enter Your Details</h2>
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="email" id="email" placeholder="Enter your email">
+        <input type="number" id="phone" placeholder="Enter your mobile number">
+        <button onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Section -->
+    <div id="quiz-section" style="display:none;">
+        <h2>Cloud Computing Quiz</h2>
+        <div id="quiz"></div>
+        <button onclick="submitQuiz()">Submit Quiz</button>
+    </div>
+
+    <!-- Result Section -->
+    <div id="result-section" style="display:none;">
+        <h2>Your Result</h2>
+        <p id="user-details"></p>
+        <p id="score"></p>
+        <div id="leaderboard"></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
