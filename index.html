@@ -1,40 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Cloud Computing Quiz</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <title>Cloud Quiz — Neon Futuristic</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+  <!-- Particle canvas -->
+  <canvas id="particle-canvas" class="particle-canvas"></canvas>
 
-<div class="container">
+  <!-- Floating clouds (SVGs) -->
+  <div class="clouds">
+    <svg class="cloud cloud-1" viewBox="0 0 64 40" aria-hidden="true">
+      <path d="M20 30H6a6 6 0 0 1 0-12c1.2 0 2.4.2 3.5.6A10 10 0 1 1 54 20a8 8 0 0 1-1 15H20z"/>
+    </svg>
+    <svg class="cloud cloud-2" viewBox="0 0 64 40" aria-hidden="true">
+      <path d="M20 30H6a6 6 0 0 1 0-12c1.2 0 2.4.2 3.5.6A10 10 0 1 1 54 20a8 8 0 0 1-1 15H20z"/>
+    </svg>
+    <svg class="cloud cloud-3" viewBox="0 0 64 40" aria-hidden="true">
+      <path d="M20 30H6a6 6 0 0 1 0-12c1.2 0 2.4.2 3.5.6A10 10 0 1 1 54 20a8 8 0 0 1-1 15H20z"/>
+    </svg>
+  </div>
 
-    <!-- User Info Section -->
-    <div id="user-info">
-        <h2>Enter Your Details</h2>
-        <input type="text" id="name" placeholder="Enter your name">
-        <input type="email" id="email" placeholder="Enter your email">
-        <input type="number" id="phone" placeholder="Enter your mobile number">
-        <button onclick="startQuiz()">Start Quiz</button>
-    </div>
+  <main class="wrap">
+    <header class="header neon-text">
+      <h1>☁️ Cloud Quiz</h1>
+      <p class="subtitle">Neon futuristic theme • soft clouds • glow UI</p>
+    </header>
 
-    <!-- Quiz Section -->
-    <div id="quiz-section" style="display:none;">
-        <h2>Cloud Computing Quiz</h2>
-        <div id="quiz"></div>
-        <button onclick="submitQuiz()">Submit Quiz</button>
-    </div>
+    <!-- USER INFO CARD -->
+    <section id="user-info" class="card panel show">
+      <h2 class="card-title">Enter Your Details</h2>
+      <div class="inputs">
+        <input id="name" type="text" placeholder="Name" autocomplete="name" />
+        <input id="email" type="email" placeholder="Email" autocomplete="email" />
+        <input id="phone" type="tel" placeholder="Phone" autocomplete="tel" />
+      </div>
+      <div class="actions">
+        <button id="startBtn" class="btn btn-glow" onclick="startQuiz()">Start Quiz</button>
+      </div>
+    </section>
 
-    <!-- Result Section -->
-    <div id="result-section" style="display:none;">
-        <h2>Your Result</h2>
-        <p id="user-details"></p>
-        <p id="score"></p>
-        <div id="leaderboard"></div>
+    <!-- QUIZ CARD -->
+    <section id="quiz-section" class="card panel">
+      <div class="panel-head">
+        <h2 class="card-title">Cloud Computing Quiz</h2>
+        <div id="timer" class="timer">⏰ <span id="time">60</span>s</div>
+      </div>
 
-    </div>
+      <div id="quiz" class="quiz-area"></div>
 
-</div>
+      <div class="actions">
+        <button class="btn btn-outline" onclick="submitQuiz()">Submit</button>
+      </div>
+    </section>
 
-<script src="script.js"></script>
+    <!-- RESULT CARD -->
+    <section id="result-section" class="card panel">
+      <h2 class="card-title">Your Result</h2>
+      <p id="user-details" class="muted"></p>
+      <p id="score" class="score-animated">Score: <span id="scoreValue">0</span>/<span id="maxQ">0</span></p>
+
+      <div class="chart-wrap">
+        <canvas id="resultChart"></canvas>
+      </div>
+
+      <h3 class="leader-title">🏆 Top 10 Scores</h3>
+      <ol id="leaderboard" class="leaderboard"></ol>
+
+      <div class="actions">
+        <button class="btn btn-glow" onclick="restart()">Try Again</button>
+        <button class="btn btn-soft" onclick="clearLeaderboard()">Clear Leaderboard</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Made by Abhishek • Neon Cloud Theme</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
